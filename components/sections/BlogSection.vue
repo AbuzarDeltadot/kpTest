@@ -1,6 +1,6 @@
 <template>
   <section
-    v-if="content"
+    v-show="content"
     class="bg-white pt-[20px] pb-[70px]"
   >
     <div class="max-w-7xl mx-auto px-3 ">
@@ -37,7 +37,7 @@
               slidesPerView: 3,
             },
           }"
-          class="mySwiper"
+          class="mySwiperBlog"
         >
           <SwiperSlide
             v-for="(blog, index) in content"
@@ -57,10 +57,11 @@
                 <!-- </NuxtLink> -->
                 <div class="p-6">
                   <h2 class="flex items-center tracking-widest text-xs title-font font-medium text-secondary mb-1">
+                    <template>
                     <Icon
                       name="bi:dash"
                       class="text-lg middle"
-                    /> <span v-if="blog?.blog_category?.name">{{ blog?.blog_category?.name }}</span>
+                    /> <span >{{ blog?.blog_category?.name }}</span></template>
                   </h2>
                   <h1 class="title-font text-lg font-medium text-gray-900 mb-3">
                     <!-- <NuxtLink :to="`/blog/${blog.slug}`"> -->
@@ -79,7 +80,7 @@
                         name="material-symbols:calendar-month"
                         class="text-base"
                       /> &nbsp;
-                      {{ formatDate(blog.published_date) }}
+                      {{ formatDate(blog?.published_date) }}
                     </span>
                     <Icon
                       name="radix-icons:dot-filled"
@@ -90,7 +91,7 @@
                         name="material-symbols:person-2-outline-rounded"
                         class="text-base"
                       /> &nbsp;
-                      By {{ blog.owner }}
+                      By {{ blog?.owner }}
                     </span>
                   </span>
                   <!-- :to="`/blog/${blog.slug}`" -->

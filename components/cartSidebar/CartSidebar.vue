@@ -84,7 +84,7 @@ const getSKU = (product) => {
   const attributeName = Object.keys(product.cartData.attributes)[0]
   console.log(product)
   const filteredAttribute = product?.attributes[attributeName]?.filter(item => item.value === product.cartData.attributes[Object.keys(product.cartData.attributes)[0]])[0]
-  console.log(filteredAttribute)
+  // console.log(filteredAttribute)
   return filteredAttribute?.sku
 }
 

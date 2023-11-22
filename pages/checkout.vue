@@ -81,7 +81,6 @@
                       name="last_name"
                     />
                     <button
-                    
                       :disabled="
                         !steps?.account?.valid &&
                         steps?.account?.errorCount === 0
@@ -355,13 +354,12 @@
                       shop?.shipping?.length > 0 &&
                       Object.keys(shop?.selectedShipping)?.length === 0
                   }"
-                  @click="
-                    (e) => {
-                      e.preventDefault()
-                      setStep(1)
-                    }
-                  "
+                  @click="handleButtonClick"
                 >
+                  <!-- (e) => {
+                  e.preventDefault()
+                  setStep(1)
+                } -->
                   Proceed to payment
                 </button>
               </section>
@@ -555,9 +553,6 @@ const messages = ref('')
 const notify = ref(false)
 // const gtag = useGtag()
 
-
-
-
 useHead({
   title: 'Checkout'
 })
@@ -568,47 +563,62 @@ const loader = ref(false)
 const customRadio = createInput(RadioButton)
 const payment = createInput(PaymentField)
 
-
 const shop = useShopStore().data
 // trackPurchaseEvent(shop)
 
 
-// const trackPurchaseEvent = (shop) => {
-//   const items = shop.cartItems.map((item, index) => ({
-//     item_id: `SKU_${item?.id}`,
-//     item_name: item?.name, 
-//     affiliation: 'Google Merchandise Store',
-//     coupon: 'SUMMER_FUN',
-//     discount: 2.22,
-//     index: index,
-//     item_brand: 'Google',
-//     item_category: 'Clothing',
-//     item_category2: 'Adult',
-//     item_category3: 'Shirts',
-//     item_category4: 'Crew',
-//     item_category5: 'Short sleeve',
-//     item_list_id: 'related_products',
-//     item_list_name: 'Related products',
-//     item_variant: 'green',
-//     location_id: 'ChIJIQBpAG2ahYAR_6128GcTUEo',
-//     price: item.price, // Replace with the correct property from your item object
-//     quantity: item.quantity // Replace with the correct property from your item object
-//   }));
+function handleButtonClick(event) {
+    event.preventDefault();
+    setStep(1); 
+    trackPurchaseEvent(); 
+  }
 
-//   gtag('event', 'purchase', {
-//     transaction_id: 'T_12345_2',
-//     affiliation: 'Google Merchandise Store',
-//     value: 25.42,
-//     tax: 4.90,
-//     shipping: 5.99,
-//     currency: 'USD',
-//     coupon: 'SUMMER_SALE',
-//     items: items
-//   });
-// };
+const trackPurchaseEvent = () => {
+  const items = productSschema()
+  // console.log(items)
+  gtag('event', 'purchase', {
+    transaction_id: 'T_12345_2',
+    affiliation: 'Google Merchandise Store',
+    value: 25.42,
+    tax: 4.9,
+    shipping: 3.99,
+    currency: 'USD',
+    coupon: 'SUMMER_SALE',
+    items: items
+  })
+}
+// onMounted(() => {
+//   const productSchemaResult = productSschema()
+//   console.log(productSchemaResult)
+// })
 
+const productSschema = () => {
+  const array = []
+  shop.cartItems.forEach((item) => {
+    const attribute_id = item.attributes[
+      Object.keys(item.cartData.attributes)[0]
+    ].filter(
+      (att) =>
+        att.value ===
+        item?.cartData?.attributes[Object.keys(item?.cartData?.attributes)[0]]
+    )[0]
+    const obj = {
+      item_id: `SKU_${attribute_id?.sku}`,
+      // attribute_id: attribute_id.id,
+      quantity: item?.cartData.qty,
+      discount: 0,
+      price: item?.cartData.price,
+      item_name: item?.name,
+      item_brand: item?.brand.name,
+      coupon: "SUMMER_FUN",
+      item_variant: attribute_id.value,
 
+    }
+    array.push(obj)
+  })
 
+  return array
+}
 
 // const tempShipping = ref([])
 
@@ -660,9 +670,6 @@ const user_b_phone = ref('')
 //   // You can perform additional actions here
 //   console.log(newValue?.selectedShipping)
 // });
-
-
-
 
 const guestMode = ref(false)
 const checkoutAsGuest = (bool) => {

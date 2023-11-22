@@ -64,29 +64,29 @@ useHead({
       async: true,
       defer: true
     },
-    // {
-    //   src: 'https://www.googletagmanager.com/gtag/js?id=GT-MQX86JS',
-    //   async: true,
-    //   defer: true
-    // },
-    // {
-    //   hid: 'gtag',
-    //   innerHTML: `
-    //   window.dataLayer = window.dataLayer || [];
-    //     function gtag(){dataLayer.push(arguments);}
-    //     gtag('js', new Date());
-    //     gtag('config', 'GT-MQX86JS');
-    //       `
-    // },
+    {
+      src: 'https://www.googletagmanager.com/gtag/js?id=GT-MQX86JS',
+      async: true,
+      defer: true
+    },
+    {
+      hid: 'gtag',
+      innerHTML: `
+      window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GT-MQX86JS');
+          `
+    },
   ]
 })
 
 
-onMounted(() => {
-  // const script = document.createElement('script')
-  // script.async = true
-  // script.src = 'https://www.googletagmanager.com/gtag/js?id=GT-MQX86JS'
-  // document.head.appendChild(script)
+// onMounted(() => {
+//   const script = document.createElement('script')
+//   script.async = true
+//   script.src = 'https://www.googletagmanager.com/gtag/js?id=GT-MQX86JS'
+//   document.head.appendChild(script)
 
   // window.dataLayer = window.dataLayer || []
   // function gtag() {
@@ -95,38 +95,38 @@ onMounted(() => {
   // gtag('js', new Date())
   // gtag('config', 'GT-MQX86JS')
 
-  // gtag('event', 'purchase', {
-  //   transaction_id: 'T_12345_1',
-  //   affiliation: 'Google Merchandise Store',
-  //   value: 25.42,
-  //   tax: 4.9,
-  //   shipping: 3.99,
-  //   currency: 'USD',
-  //   coupon: 'SUMMER_SALE',
-  //   items: [
-  //     {
-  //       item_id: 'SKU_12345',
-  //       item_name: 'Stan and Friends Tee',
-  //       affiliation: 'Google Merchandise Store',
-  //       coupon: 'SUMMER_FUN',
-  //       discount: 2.22,
-  //       index: 0,
-  //       item_brand: 'Google',
-  //       item_category: 'Clothing',
-  //       item_category2: 'Adult',
-  //       item_category3: 'Shirts',
-  //       item_category4: 'Crew',
-  //       item_category5: 'Short sleeve',
-  //       item_list_id: 'related_products',
-  //       item_list_name: 'Related products',
-  //       item_variant: 'green',
-  //       location_id: 'ChIJIQBpAG2ahYAR_6128GcTUEo',
-  //       price: 9.99,
-  //       quantity: 1
-  //     }
-  //   ]
-  // })
-})
+//   gtag('event', 'purchase', {
+//     transaction_id: 'T_12345_1',
+//     affiliation: 'Google Merchandise Store',
+//     value: 25.42,
+//     tax: 4.9,
+//     shipping: 3.99,
+//     currency: 'USD',
+//     coupon: 'SUMMER_SALE',
+//     items: [
+//       {
+//         item_id: 'SKU_12345',
+//         item_name: 'Stan and Friends Tee',
+//         affiliation: 'Google Merchandise Store',
+//         coupon: 'SUMMER_FUN',
+//         discount: 2.22,
+//         index: 0,
+//         item_brand: 'Google',
+//         item_category: 'Clothing',
+//         item_category2: 'Adult',
+//         item_category3: 'Shirts',
+//         item_category4: 'Crew',
+//         item_category5: 'Short sleeve',
+//         item_list_id: 'related_products',
+//         item_list_name: 'Related products',
+//         item_variant: 'green',
+//         location_id: 'ChIJIQBpAG2ahYAR_6128GcTUEo',
+//         price: 9.99,
+//         quantity: 1
+//       }
+//     ]
+//   })
+// })
 
 onMounted(() => {
   initFlowbite()

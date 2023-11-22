@@ -299,10 +299,10 @@
             @click="
               () => {
                 showMobileMenu = !showMobileMenu
-                // if(item?.name === 'Shop'){
+                 if(item?.name === 'Shop'){
 
-                  // resetSearch(item)
-                // }
+                   resetSearch(item)
+                }
               }
             "
           >
@@ -335,11 +335,10 @@ const keyword = ref('')
 const filters = computed(() => useShopPageStore().filtersList)
 const route = useRoute()
 
-// const resetSearch = (item) => {
-    // selectedCategory.value = {}
-    // keyword.value = ''
-    // useShopPageStore().getProducts({}, 1, false, true)
-// }
+const resetSearch = (item) => {
+    selectedCategory.value = {}
+    useShopPageStore().getProducts({}, 1, false, true)
+}
 const submitSearch = (e) => {
   e.preventDefault()
 

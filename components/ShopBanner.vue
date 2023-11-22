@@ -37,11 +37,11 @@
         });`"
       >
       <!-- e.preventDefault(); -->
-        <NuxtLink
-        
-        :href="slide?.banner_link"
+        <div
+        @click="redirectBanner(slide?.banner_link)"
         class="aspect-[16/6.5] block w-full h-auto"
         >
+        <!-- :href="slide?.banner_link" -->
           <!-- target="_blank" -->
           <!-- <div v-if="!slide.sub_heading && !slide.heading && !slide.description && !slide.button_text_one && !slide.button_text_two" class="aspect-[16/6.5] w-full h-auto"></div> -->
           <div
@@ -82,19 +82,19 @@
               </div>
               <div class="flex flex-wrap pt-3 gap-3">
                 <NuxtLink
-                  v-if="slide.button_text_one"
+                  v-if="slide?.button_text_one"
                   :href="
-                    slide.link_button_one
-                      ? slide.link_button_one
+                    slide?.link_button_one
+                      ? slide?.link_button_one
                       : 'javascript:void(0)'
                   "
-                  :target="slide.link_button_one ? '_blank' : ''"
+                  :target="slide?.link_button_one ? '_blank' : ''"
                   class="b-btn-1 px-6 py-3 border rounded-full bg-primary border-2 border-primary text-white text-xs md:text-base uppercase hover:bg-secondary hover:border-secondary transition-colors"
                 >
-                  {{ slide.button_text_one }}
+                  {{ slide?.button_text_one }}
                 </NuxtLink>
                 <NuxtLink
-                  v-if="slide.button_text_two"
+                  v-if="slide?.button_text_two"
                   :href="
                     slide.link_button_two
                       ? slide.link_button_two
@@ -108,7 +108,7 @@
               </div>
             </div>
           </div>
-        </NuxtLink>
+        </div>
       </SwiperSlide>
     </Swiper>
     <div
@@ -150,6 +150,13 @@ const props = defineProps({
     }
   }
 })
+
+const router = useRouter()
+
+const redirectBanner = (link)=>{
+  if(link)window.open(router.resolve(link).href, '_blank');
+
+}
 
 // const swipe = useSwiper()
 
