@@ -1,0 +1,45 @@
+@import 'flatpickr/dist/flatpickr.css';
+@import 'cookieconsent.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'bebas';
+  src: url('/fonts/BebasNeue-Regular.woff2') format('woff2'),
+       url('/fonts/BebasNeue-Regular.woff') format('woff');
+}
+
+/* Flatpicker CSS */
+.flatpickr-day.selected, 
+.flatpickr-day.startRange, 
+.flatpickr-day.endRange, 
+.flatpickr-day.selected.inRange, 
+.flatpickr-day.startRange.inRange, 
+.flatpickr-day.endRange.inRange, 
+.flatpickr-day.selected:focus, 
+.flatpickr-day.startRange:focus, 
+.flatpickr-day.endRange:focus, 
+.flatpickr-day.selected:hover, 
+.flatpickr-day.startRange:hover, 
+.flatpickr-day.endRange:hover, 
+.flatpickr-day.selected.prevMonthDay, 
+.flatpickr-day.startRange.prevMonthDay, 
+.flatpickr-day.endRange.prevMonthDay, 
+.flatpickr-day.selected.nextMonthDay, 
+.flatpickr-day.startRange.nextMonthDay, 
+.flatpickr-day.endRange.nextMonthDay {
+  @apply bg-secondary border-secondary text-white;
+  box-shadow: none;
+}
+
+.product-options label.formkit-wrapper{
+@apply py-1 px-4 border text-xs block rounded hover:bg-secondary hover:text-white hover:border-secondary ease-in-out duration-300 cursor-pointer;
+}
+.product-options label.formkit-wrapper[data-checked="true"]{
+@apply bg-primary text-white border-primary pointer-events-none;
+}
+.product-options legend.formkit-legend{
+  @apply text-primary font-bold;
+}

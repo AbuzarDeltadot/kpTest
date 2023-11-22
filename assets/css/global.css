@@ -1,0 +1,12 @@
+body{
+  overflow-x: hidden;
+}
+.swal2-backdrop-show {
+    backdrop-filter: blur(8px);
+}
+.line-clamp-2{
+overflow: hidden;
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 2;
+}
