@@ -5,7 +5,7 @@
     >
       <img
         class="group-[.first]:aspect-square aspect-[16/14] w-full object-cover rounded-xl object-center bg-gray"
-        :src="$config.IMAGE_URL + detail.image"
+        :src="$config.public.IMAGE_URL + detail.image"
         alt="blog"
       />
       <div class="p-3 flex items-center justify-center">
@@ -18,6 +18,7 @@
 </template>
 
 <script setup>
+
 const props = defineProps({
   detail: Object,
   className: String

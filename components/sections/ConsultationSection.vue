@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <section class="pt-[70px] bg-[#163A92] relative">
     <div class="max-w-7xl mx-auto px-3 flex flex-wrap">
       <div class="md:w-[70%] w-full text-white">
@@ -166,4 +166,5 @@ height: fit-content !important;
 
   }
 }
-</style>
+</style> -->
+<template>abc</template>

@@ -16,7 +16,7 @@
         > {{ category.name }} <img
           v-if="type === 'brands' && category.image"
           class="h-5 w-16 object-contain object-right ml-auto"
-          :src="$config.IMAGE_URL + category.image"
+          :src="$config.public.IMAGE_URL + category.image"
         ></span>
 
       </label>

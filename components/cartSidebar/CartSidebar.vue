@@ -17,7 +17,7 @@ import { createIncrementalCompilerHost } from 'typescript';
               class="text-lg cursor-pointer transition hover:text-red-500 absolute right-5"
               @click="(e) => handleDeleteItem(item)" />
             <div class="w-full max-w-[80px]">
-              <img :src="$config.IMAGE_URL + item.featured_image" alt="product image"
+              <img :src="$config.public.IMAGE_URL + item.featured_image" alt="product image"
                 class="rounded-lg text-[0] bg-gray-400 h-[120px] w-[80px] object-cover">
             </div>
             <div class="w-full">
@@ -46,7 +46,7 @@ import { createIncrementalCompilerHost } from 'typescript';
                     </button>
                   </div>
                 </div>
-                <h5 class="w-fit">{{ $config.CURRENCY + parseFloat(item.cartData.itemTotal).toFixed(2) }}</h5>
+                <h5 class="w-fit">{{ $config.public.CURRENCY + parseFloat(item.cartData.itemTotal).toFixed(2) }}</h5>
               </div>
             </div>
           </div>
@@ -58,7 +58,7 @@ import { createIncrementalCompilerHost } from 'typescript';
       <div class="p-4 bg-white border-t absolute w-full bottom-0">
         <div class="flex justify-between">
           <h5 class="text-xl">Subtotal</h5>
-          <h6 class="text-xl text-primary font-semibold">{{ $config.CURRENCY + parseFloat(shop.cartSummary.subTotalPrice).toFixed(2) }}</h6>
+          <h6 class="text-xl text-primary font-semibold">{{ $config.public.CURRENCY + parseFloat(shop.cartSummary.subTotalPrice).toFixed(2) }}</h6>
         </div>
         <p class="text-center text-xs my-3 text-secondary">Shipping, taxes, and discount codes calculated at checkout.</p>
         <NuxtLink href="/checkout" @click="handleHideCart(false)" class="py-4 px-6 text-center w-full bg-primary text-white rounded-lg block hover:bg-secondary transition-all">CHECKOUT</NuxtLink>

@@ -1,31 +1,7 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
   mode: 'universal',
-  // head: {
-
-    // script: [
-      // {
-      //   src: `https://www.googletagmanager.com/gtag/js?id=GT-MQX86JS`,
-      //   async: true
-      // },
-      // {
-      //   hid: 'gtag',
-      //   innerHTML: `
-      //     window.dataLayer = window.dataLayer || [];
-      //     function gtag(){dataLayer.push(arguments);}
-      //     gtag('js', new Date());
-      //     gtag('config', 'GT-MQX86JS');
-      //   `
-      // }
-    // ]
-    // script: [
-    //   {
-    //     src: 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDR0GpXTjXKd0izp0dh5xEor6j1vlaHzv0',
-    //     async: true,
-    //     defer: true,
-    //   },
-    // ],
-  // },
+  
   alias: {
     pinia: '/node_modules/@pinia/nuxt/node_modules/pinia/dist/pinia.mjs',
   },
@@ -47,18 +23,36 @@ export default defineNuxtConfig({
     ],
     '@formkit/nuxt',
   ],
-  // gtag: {
-  //   id: 'GT-MQX86JS',
-  //   config: {
-  //     page_title: 'checkpout page',
-  //   },
-  // },
   tailwindcss: {
     cssPath: '~/assets/css/tailwind.css',
   },
   css: [
     '~/assets/css/global.css',
   ],
+  serverMiddleware: [
+    'compression', // Enable server-side compression
+  ],
+  http: {
+    middleware: ['compression'],
+  },
+  buildModules: ['@nuxt/http', '@nuxtjs/webpack-bundle-analyzer', '@nuxtjs/analyz'],
+  build: {
+    // Enable modern mode for better performance in modern browsers
+    target: 'static',
+    modern: 'server',
+    // Minify CSS and JS
+    optimizeCSS: true, // Minify CSS
+    minifyJS: true,   // Minify JS
+    terser: {
+      extractComments: false,
+    },
+    // Enable Brotli compression
+    extend(config, { isDev, isClient }) {
+      if (!isDev && isClient) {
+        config.optimization.splitChunks.maxSize = 250000;
+      }
+    },
+  },
   runtimeConfig: {
     APP_URL: process.env.APP_URL,
     API_URL: process.env.API_URL,

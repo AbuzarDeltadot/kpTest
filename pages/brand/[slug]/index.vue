@@ -5,16 +5,22 @@
 <script setup>
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
-import Template_1 from '../../../components/templates/Template_1.vue';
-import Template_2 from '../../../components/templates/Template_2.vue';
+import Template_1 from '../../../components/templates/Template_1.vue'
+import Template_2 from '../../../components/templates/Template_2.vue'
 const currentRount = useRoute()
 const brandData = ref()
+// const productData = ref()
+
 const slug = currentRount.params.slug
 
 await useBrandStore().getBrand(slug)
 
+await useBrandStore().getBrandProduct(slug)
+
+// const product = useBrandStore().productBrand
 const brand = useBrandStore().brandData
 
+// brandData.value = product
 brandData.value = brand
-
+// console.log(brandData)
 </script>

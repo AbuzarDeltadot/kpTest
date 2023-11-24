@@ -73,7 +73,7 @@
                   class="px-2 py-4 font-medium text-gray-900 whitespace-nowrap"
                 >
                   <img
-                    :src="$config.IMAGE_URL + item.featured_image"
+                    :src="$config.public.IMAGE_URL + item.featured_image"
                     alt="product"
                     class="rounded-lg bg-gray-500 h-[70px] w-[70px] object-cover"
                   >
@@ -94,7 +94,7 @@
                   scope="row"
                   class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-center"
                 >
-                  {{ $config.CURRENCY + parseFloat(item.cartData.price).toFixed(2) }}
+                  {{ $config.public.CURRENCY + parseFloat(item.cartData.price).toFixed(2) }}
                 </th>
                 <th
                   scope="row"
@@ -122,7 +122,7 @@
                   scope="row"
                   class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap text-center"
                 >
-                  {{ $config.CURRENCY + parseFloat(item.cartData.itemTotal).toFixed(2) }}
+                  {{ $config.public.CURRENCY + parseFloat(item.cartData.itemTotal).toFixed(2) }}
                 </th>
                 <td class="px-6 py-4 text-center">
                   <Icon
@@ -153,34 +153,34 @@
               class="flex justify-between mt-2 mb-2"
             >
               <span class="font-semibold text-sm">SubTotal</span>
-              <span class="font-semibold text-sm">{{ $config.CURRENCY + parseFloat(shop.cartSummary.subTotalPrice).toFixed(2) }}</span>
+              <span class="font-semibold text-sm">{{ $config.public.CURRENCY + parseFloat(shop.cartSummary.subTotalPrice).toFixed(2) }}</span>
             </div>
             <div
               v-if="shop.cartSummary.shippingFee"
               class="flex justify-between mt-2 mb-2"
             >
               <span class="font-semibold text-sm">Shipping</span>
-              <span class="font-semibold text-sm">{{ $config.CURRENCY + parseFloat(shop.cartSummary.shippingFee).toFixed(2) }}</span>
+              <span class="font-semibold text-sm">{{ $config.public.CURRENCY + parseFloat(shop.cartSummary.shippingFee).toFixed(2) }}</span>
             </div>
             <div
               v-if="shop.cartSummary.deliveryFee"
               class="flex justify-between mt-2 mb-2"
             >
               <span class="font-semibold text-sm">Delivery</span>
-              <span class="font-semibold text-sm">{{ $config.CURRENCY + parseFloat(shop.cartSummary.deliveryFee).toFixed(2) }}</span>
+              <span class="font-semibold text-sm">{{ $config.public.CURRENCY + parseFloat(shop.cartSummary.deliveryFee).toFixed(2) }}</span>
             </div>
             <div
               v-if="shop.cartSummary.discount"
               class="flex justify-between mt-2 mb-2"
             >
               <span class="font-semibold text-sm">Discount</span>
-              <span class="font-semibold text-sm">-{{ $config.CURRENCY + parseFloat(shop.cartSummary.discount).toFixed(2) }}</span>
+              <span class="font-semibold text-sm">-{{ $config.public.CURRENCY + parseFloat(shop.cartSummary.discount).toFixed(2) }}</span>
             </div>
             <BaseCouponField/>
             <div class="border-t mt-8">
               <div class="flex font-semibold justify-between py-6 text-sm uppercase items-center">
                 <span>Payable</span>
-                <span class="text-lg text-primary">{{ $config.CURRENCY + parseFloat(shop.cartSummary.totalPrice).toFixed(2) }}</span>
+                <span class="text-lg text-primary">{{ $config.public.CURRENCY + parseFloat(shop.cartSummary.totalPrice).toFixed(2) }}</span>
               </div>
               <NuxtLink
                 to="/checkout"

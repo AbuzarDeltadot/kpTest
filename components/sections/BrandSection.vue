@@ -72,7 +72,7 @@
             <!-- :target="brand.link && brand.link !== '#' ? '_blank' : '_self'" -->
             <!-- :target="brand.link && brand.link !== '#' ? '_blank' : ''" -->
             <img
-              :src="$config.IMAGE_URL + brand.image"
+              :src="$config.public.IMAGE_URL + brand.image"
               alt="brand"
               class="h-full object-contain"
             />

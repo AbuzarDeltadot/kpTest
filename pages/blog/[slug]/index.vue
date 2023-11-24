@@ -14,7 +14,7 @@
         </div>
         <div>
           <img
-            :src="$config.IMAGE_URL + data.blog.featured_image"
+            :src="$config.public.IMAGE_URL + data.blog.featured_image"
             :alt="data.blog.title"
             class="w-full md:rounded-[60px] rounded-2xl"
           >
