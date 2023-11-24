@@ -17,7 +17,6 @@
 
     <!-- Blogs Section -->
     <BlogSection :title="homeData?.blog?.heading" :desc="homeData?.blog?.subHeading" :content="homeData?.blog?.blogs" />
-
     <!-- Feedback Button -->
     <button
       class="bg-primary py-1 text-xs rounded-b-lg shadow-lg hover:bg-secondary transition px-4 fixed md:top-1/2 top-[90%] left-0 -translate-y-1/2 text-white z-10 -rotate-90 origin-top-left">

@@ -78,9 +78,14 @@ useHead({
         gtag('config', 'GT-MQX86JS');
           `
     },
+    {
+      async: true,
+      defer: true,
+      'data-domain': 'kp-pharma.vercel.app',
+      src: 'https://plausible.io/js/plausible.js'
+    }
   ]
 })
-
 
 // onMounted(() => {
 //   const script = document.createElement('script')
@@ -88,12 +93,12 @@ useHead({
 //   script.src = 'https://www.googletagmanager.com/gtag/js?id=GT-MQX86JS'
 //   document.head.appendChild(script)
 
-  // window.dataLayer = window.dataLayer || []
-  // function gtag() {
-  //   window.dataLayer.push(arguments)
-  // }
-  // gtag('js', new Date())
-  // gtag('config', 'GT-MQX86JS')
+// window.dataLayer = window.dataLayer || []
+// function gtag() {
+//   window.dataLayer.push(arguments)
+// }
+// gtag('js', new Date())
+// gtag('config', 'GT-MQX86JS')
 
 //   gtag('event', 'purchase', {
 //     transaction_id: 'T_12345_1',

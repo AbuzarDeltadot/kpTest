@@ -25,7 +25,7 @@
           <img
             alt="ecommerce"
             class="max-h-[100vh] object-contain object-center mx-auto"
-            :src="$config.IMAGE_URL + image"
+            :src="$config.public.IMAGE_URL + image"
           >
         </div>
       </SwiperSlide>

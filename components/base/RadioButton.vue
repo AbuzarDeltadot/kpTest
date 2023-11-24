@@ -14,7 +14,7 @@
     >
     <div
       class="font-semibold min-w-[50px] leading-[20px]"
-      v-html="$config.CURRENCY + option.price"
+      v-html="$config.public.CURRENCY + option.price"
     />
     <div
       class="text-sm text-[#4B5563] leading-[20px]"

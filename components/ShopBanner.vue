@@ -33,7 +33,7 @@
             slide.button_text_two
         }"
         :style="`background-image: url(${
-          $config.IMAGE_URL + slide.banner_image
+          $config.public.IMAGE_URL + slide.banner_image
         });`"
       >
       <!-- e.preventDefault(); -->

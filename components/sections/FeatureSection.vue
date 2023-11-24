@@ -12,7 +12,7 @@
       >
         <div class="w-12 h-12">
           <img
-            :src="$config.IMAGE_URL + item.image"
+            :src="$config.public.IMAGE_URL + item.image"
             class="w-full h-full object-contain object-center"
           >
         </div>

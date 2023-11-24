@@ -63,10 +63,10 @@
           No Product found!
         </div>
         <button
-          :ref="loadMoreButton"
-          v-if="products?.length > 0"
+          ref="loadMoreButton"
+          v-show="products?.length > 0"
           :disabled="!loadMore"
-          class="w-fit mx-auto block mt-5 text-white hover:bg-secondary transition px-6 py-3 rounded-full bg-primary"
+          class="w-fit s mx-auto block mt-5 text-white hover:bg-secondary transition px-6 py-3 rounded-full bg-primary"
           :class="{ 'pointer-events-none opacity-40 bg-gray-300': !loadMore }"
           @click="(e) => handleLoadMore()"
         >
@@ -78,15 +78,17 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import Accordions from '~~/components/accordion/Accordions.vue'
 import Accordion from '~~/components/accordion/Accordion.vue'
 import ProductArchive from '~~/components/base/ProductArchive.vue'
+const loadMoreButton = ref(null)
+
 const products = computed(() => useShopPageStore().productsList)
 const loadMore = computed(() => useShopPageStore().loadMoreUrl)
 const isLoading = computed(() => useShopPageStore().isLoading)
 const searchCount = computed(() => useShopPageStore().getSearchCount)
 const chunk = ref(1)
-const loadMoreButton = ref(null)
 const showMobileMenu = ref(false)
 const route = useRoute()
 const handleLoadMore = (onScroll) => {
@@ -99,29 +101,53 @@ const handleLoadMore = (onScroll) => {
 const filterChangeHandle = () => {
   chunk.value = 1
 }
-
 const handleLoadMoreOnScroll = () => {
-  window.onscroll = function () {
+  // window.onscroll = function () {
 
-    const windowHeight = window.innerHeight
-    const scrollHeight = document.documentElement.scrollHeight - windowHeight
-    const scrollTop = window.scrollY
+  //   const windowHeight = window.innerHeight
+  //   const scrollHeight = document.documentElement.scrollHeight - windowHeight
+  //   const scrollTop = window.scrollY
     
-    const percentage = (scrollTop / scrollHeight) * 100
-    if (percentage > 60) {
-      if (!loadMore.value || isLoading.value) {
-      } else {
-          if (route?.path === '/shop') {
-          handleLoadMore(true)
-          }
-        }
-      }
-    }
+  //   const percentage = (scrollTop / scrollHeight) * 100
+  //   if (percentage > 60) {
+  //     if (!loadMore.value || isLoading.value) {
+  //     } else {
+  //         if (route?.path === '/shop') {
+  //         handleLoadMore(true)
+  //         }
+  //       }
+  //     }
+  //   }
   
 }
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // console.log(entry?.isIntersecting)
+          if (!loadMore.value || isLoading.value) {
+            return
+          } else {
+            handleLoadMore(true)
+            // observer.unobserve(entry.target)
+          }
+        }
+      })
+      // }
+    },
+    {
+      threshold: 0.5
+    }
+  )
+  if (loadMoreButton.value) {
+    observer.observe(loadMoreButton.value);
+  }
+  // console.log(loadMoreButton.value)
+})
 
 onMounted(() => {
-  window.addEventListener('onscroll', handleLoadMoreOnScroll())
+  // window.addEventListener('onscroll', handleLoadMoreOnScroll())
   // handleLoadMoreOnScroll
 })
 
@@ -136,7 +162,7 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  window.removeEventListener('onscroll', handleLoadMoreOnScroll())
+  // window.removeEventListener('onscroll', handleLoadMoreOnScroll())
 })
 </script>
 

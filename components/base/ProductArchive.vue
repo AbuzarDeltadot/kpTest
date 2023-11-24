@@ -7,7 +7,7 @@
       <img
         alt="ecommerce"
         class="object-cover object-center w-full h-full block hover:scale-125 ease-in-out duration-500"
-        :src="$config.IMAGE_URL + detail.featured_image"
+        :src="$config.public.IMAGE_URL + detail.featured_image"
       >
       <span class="flex flex-col gap-2 absolute z-10 block right-3 bottom-6">
         <span class="h-8 w-8 cursor-pointer group/icon bg-white/50 hover:bg-secondary hover:border-secondary border rounded-full border-primary flex items-center justify-center backdrop-blur translate-y-8 opacity-0 group-hover/product:translate-y-0 group-hover/product:opacity-100 ease-in-out duration-500">
@@ -55,7 +55,7 @@
       </span>
       <div class="flex flex-wrap items-center justify-between">
         <span class="price-wrap block w-fit">
-          <span class="text-primary text-sm font-semibold"><span v-if="getAttributePrice(detail?.attributes)">{{ $config.CURRENCY + getAttributePrice(detail?.attributes) }}</span><span v-else>Free</span> &nbsp;</span>
+          <span class="text-primary text-sm font-semibold"><span v-if="getAttributePrice(detail?.attributes)">{{ $config.public.CURRENCY + getAttributePrice(detail?.attributes) }}</span><span v-else>Free</span> &nbsp;</span>
           <span
             v-if="detail.regularPrice"
             class="text-xs text-gray-500 line-through"

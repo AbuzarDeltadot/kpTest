@@ -436,7 +436,7 @@
                   <span v-else
                     >Make Payment of
                     {{
-                      $config.CURRENCY +
+                      $config.public.CURRENCY +
                       parseFloat(shop.cartSummary.totalPrice).toFixed(2)
                     }}</span
                   >
@@ -470,7 +470,7 @@
             >
               <span class="font-semibold text-sm">SubTotal</span>
               <span class="font-semibold text-sm">{{
-                $config.CURRENCY +
+                $config.public.CURRENCY +
                 parseFloat(shop.cartSummary.subTotalPrice).toFixed(2)
               }}</span>
             </div>
@@ -480,7 +480,7 @@
             >
               <span class="font-semibold text-sm">Shipping</span>
               <span class="font-semibold text-sm">{{
-                $config.CURRENCY +
+                $config.public.CURRENCY +
                 parseFloat(shop.cartSummary.shippingFee).toFixed(2)
               }}</span>
             </div>
@@ -490,7 +490,7 @@
             >
               <span class="font-semibold text-sm">Delivery</span>
               <span class="font-semibold text-sm">{{
-                $config.CURRENCY +
+                $config.public.CURRENCY +
                 parseFloat(shop.cartSummary.deliveryFee).toFixed(2)
               }}</span>
             </div>
@@ -501,7 +501,7 @@
               <span class="font-semibold text-sm">Discount</span>
               <span class="font-semibold text-sm"
                 >-{{
-                  $config.CURRENCY +
+                  $config.public.CURRENCY +
                   parseFloat(shop.cartSummary.discount).toFixed(2)
                 }}</span
               >
@@ -513,7 +513,7 @@
               >
                 <span>Payable</span>
                 <span class="text-lg text-primary">{{
-                  $config.CURRENCY +
+                  $config.public.CURRENCY +
                   parseFloat(shop.cartSummary.totalPrice).toFixed(2)
                 }}</span>
               </div>

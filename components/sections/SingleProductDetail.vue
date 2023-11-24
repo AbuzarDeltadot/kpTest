@@ -34,7 +34,7 @@
                   <img
                     alt="ecommerce"
                     class="w-full md:h-[500px] bg-[#f3f3f3] aspect-square object-cover object-center rounded-lg cursor-grab"
-                    :src="$config.IMAGE_URL + image"
+                    :src="$config.public.IMAGE_URL + image"
                     @click="(e) => zoomImage(index)"
                   />
                 </SwiperSlide>
@@ -92,7 +92,7 @@
                   <img
                     alt="ecommerce"
                     class="md:h-[100px] rounded w-32 bg-[#f3f3f3] aspect-square object-cover"
-                    :src="$config.IMAGE_URL + image"
+                    :src="$config.public.IMAGE_URL + image"
                   />
                 </SwiperSlide>
               </swiper>
@@ -106,7 +106,7 @@
               {{ detail.name }}
             </h1>
             <span class="block mb-1 title-font text-2xl text-primary"
-              >{{ $config.CURRENCY + parseFloat(productCartPrice).toFixed(2) }}
+              >{{ $config.public.CURRENCY + parseFloat(productCartPrice).toFixed(2) }}
               &nbsp;
               <!-- <span class="text-lg text-gray-400 line-through">$100.00</span> -->
             </span>
@@ -270,7 +270,7 @@
 
             <!-- @closing="onModalClose" -->
             <BaseModal
-              @click="onHide"
+              @close-modal="onHide"
               :show="showModal"
               size="5xl"
               placement="center"
