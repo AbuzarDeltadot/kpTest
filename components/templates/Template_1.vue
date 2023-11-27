@@ -140,12 +140,10 @@ onMounted(() => {
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // console.log(entry?.isIntersecting)
           if (!loadMore.value || isLoading.value) {
             return
           } else {
             handleLoadMore()
-            // observer.unobserve(entry.target)
           }
         }
       })
