@@ -4,12 +4,12 @@
   <section v-if="bannerData.length > 0" class="banner relative">
     <Swiper
       :autoHeight="true"
-      :navigation="{ nextEl: '#next-icon', prevEl: '#prev-icon' }"
-      :modules="modules"
       :autoplay="{
         delay: 5000,
         disableOnInteraction: false
       }"
+      :navigation="{ nextEl: '#next-icon', prevEl: '#prev-icon' }"
+      :modules="modules"
       :pagination="pagination"
       class="bannerSlider"
       >

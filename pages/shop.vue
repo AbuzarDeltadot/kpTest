@@ -13,7 +13,12 @@
             :name="'fluent-filter-add-20-filled'"
             class="w-8 h-8 text-gray-500"
           />
-          <h5 v-else class="text-[25px] ">Filter by</h5>
+          <span
+            v-else
+            class="text-[25px]"
+            @click="showMobileMenu = !showMobileMenu"
+            >Filter by</span
+          >
         </button>
         <!-- Left side - Cross icon -->
         <button
@@ -55,6 +60,7 @@
             />
           </template>
         </div>
+
         <div
           v-else
           class="min-h-[300px] flex flex-col items-center w-full justify-center text-2xl p-4 text-gray-300"
@@ -62,6 +68,7 @@
           <Icon name="bi:box2" class="w-8 h-12 block text-gray-300" />
           No Product found!
         </div>
+
         <button
           ref="loadMoreButton"
           v-show="products?.length > 0"
@@ -78,7 +85,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref } from 'vue'
 import Accordions from '~~/components/accordion/Accordions.vue'
 import Accordion from '~~/components/accordion/Accordion.vue'
 import ProductArchive from '~~/components/base/ProductArchive.vue'
@@ -101,36 +108,34 @@ const handleLoadMore = (onScroll) => {
 const filterChangeHandle = () => {
   chunk.value = 1
 }
-const handleLoadMoreOnScroll = () => {
-  // window.onscroll = function () {
+// const handleLoadMoreOnScroll = () => {
+// window.onscroll = function () {
 
-  //   const windowHeight = window.innerHeight
-  //   const scrollHeight = document.documentElement.scrollHeight - windowHeight
-  //   const scrollTop = window.scrollY
-    
-  //   const percentage = (scrollTop / scrollHeight) * 100
-  //   if (percentage > 60) {
-  //     if (!loadMore.value || isLoading.value) {
-  //     } else {
-  //         if (route?.path === '/shop') {
-  //         handleLoadMore(true)
-  //         }
-  //       }
-  //     }
-  //   }
-  
-}
+//   const windowHeight = window.innerHeight
+//   const scrollHeight = document.documentElement.scrollHeight - windowHeight
+//   const scrollTop = window.scrollY
+
+//   const percentage = (scrollTop / scrollHeight) * 100
+//   if (percentage > 60) {
+//     if (!loadMore.value || isLoading.value) {
+//     } else {
+//         if (route?.path === '/shop') {
+//         handleLoadMore(true)
+//         }
+//       }
+//     }
+//   }
+
+// }
 onMounted(() => {
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // console.log(entry?.isIntersecting)
           if (!loadMore.value || isLoading.value) {
             return
           } else {
             handleLoadMore(true)
-            // observer.unobserve(entry.target)
           }
         }
       })
@@ -141,15 +146,15 @@ onMounted(() => {
     }
   )
   if (loadMoreButton.value) {
-    observer.observe(loadMoreButton.value);
+    observer.observe(loadMoreButton.value)
   }
   // console.log(loadMoreButton.value)
 })
 
-onMounted(() => {
-  // window.addEventListener('onscroll', handleLoadMoreOnScroll())
-  // handleLoadMoreOnScroll
-})
+// onMounted(() => {
+// window.addEventListener('onscroll', handleLoadMoreOnScroll())
+// handleLoadMoreOnScroll
+// })
 
 // Watch for changes in the URL query parameter
 onMounted(() => {
@@ -161,9 +166,9 @@ onMounted(() => {
   })
 })
 
-onUnmounted(() => {
-  // window.removeEventListener('onscroll', handleLoadMoreOnScroll())
-})
+// onUnmounted(() => {
+// window.removeEventListener('onscroll', handleLoadMoreOnScroll())
+// })
 </script>
 
 <style scoped>

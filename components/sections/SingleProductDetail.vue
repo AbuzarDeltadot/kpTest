@@ -229,6 +229,7 @@
                   </span>
                 </div>
                 <div
+                  class="lg:w-64 md:w-64 sm:w-64 w-full"
                   v-for="(info, index) in detail?.product_information"
                   :key="index"
                 >
@@ -236,17 +237,13 @@
                     @click="openModal(info)"
                     v-if="info?.type === 'accordion'"
                     :style="{
-                      width: '258px',
+                      width: '100%',
                       backgroundColor: info?.background_color
                     }"
                     :class="`modal-btn border-4 flex border-primary py-2 px-6 focus:outline-none hover:bg-primary text-white hover:text-white transition px-3 py-4 border-transparent mt-1  `"
                   >
-                    <span
-                      style="width: 100%"
-                      class="flex justify-between"
-                    >
+                    <span style="width: 100%" class="flex justify-between">
                       <span
-                        class=""
                         :style="{
                           color: info.text_color
                         }"
@@ -269,11 +266,11 @@
             <!--Modal-->
 
             <!-- @closing="onModalClose" -->
+            <!-- placement="center" -->
             <BaseModal
+              size="5xl"
               @close-modal="onHide"
               :show="showModal"
-              size="5xl"
-              placement="center"
               class="flex justify-center flex-col"
             >
               <div
@@ -343,7 +340,7 @@
     <section class="bg-white overflow-hidden">
       <div
         v-if="isMobile"
-        class="container mx-auto py-5 pl:10 px-4 lg:w-4/5 pt-10"
+        class="container mx-auto py-5 pl:10 px-5 lg:w-4/5 pt-10"
       >
         <!-- Render the accordion component for mobile -->
         <button
