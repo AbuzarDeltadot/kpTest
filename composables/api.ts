@@ -137,3 +137,10 @@ export const usePost = async (url = '/', options = {}) => {
     ...options,
   })
 }
+
+export const usePut = async (url = '/', options = {}) => {
+  return await useLaraFetch(url, {
+    method: 'PUT',
+    ...options,
+  })
+}

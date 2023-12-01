@@ -20,7 +20,7 @@
         :class="{ 'disabled-button': isFormInvalid }"
         v-if="submitField"
         type="submit"
-        class="pointer-events-auto mt-6 rounded-lg py-2 mt-8 text-lg w-full bg-primary text-white hover:border-secondary hover:bg-secondary"
+        class="pointer-events-auto mt-6 mb-6 rounded-lg py-2 mt-8 text-lg w-full bg-primary text-white hover:border-secondary hover:bg-secondary"
       >
         <span>{{ submitField.name || 'Submit' }}</span>
       </button>
@@ -63,12 +63,12 @@ const dynamicSchema = computed(() => {
       : null
     const required = field?.is_required ? 'required' : null
 
-    let inputClass = 'input'; 
+    let inputClass = 'input'
     if (field.field_type === 'text') {
-      inputClass = 'text-input';
+      inputClass = 'text-input'
     } else if (field.field_type === 'email') {
-      inputClass = 'text-input'; 
-    } 
+      inputClass = 'text-input'
+    }
 
     return {
       $formkit: field?.field_type,
@@ -176,12 +176,15 @@ const handleSubmit = async () => {
   display: none;
 }
 .disabled-button {
-  opacity: 0.2;
-  filter: grayscale(1);;
+  background: #f6f6f6;
+  cursor: pointer;
+  color: black;
 }
 .disabled-button:hover {
   opacity: 0.2;
-  filter: grayscale(1);;
+  filter: grayscale(1);
+  opacity: 0.2;
+  filter: grayscale(1);
 }
 
 .formkit-input.input {
@@ -223,7 +226,22 @@ ul.formkit-messages {
   .email-input {
     display: block;
     width: 100%;
-    box-sizing: border-box; 
+    box-sizing: border-box;
+  }
+}
+
+.text-input {
+  display: inline-block;
+  padding: 10px 8px 10px 0px;
+  box-sizing: border-box;
+  width: 50%;
+}
+@media screen and (max-width: 767px) {
+  .text-input,
+  .email-input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
   }
 }
 </style>

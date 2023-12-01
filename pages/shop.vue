@@ -3,6 +3,7 @@
     <div class="grid gap-7 lg:grid-cols-4 max-w-7xl mx-auto px-3">
       <div class="lg:hidden flex justify-between items-center px-4">
         <!-- Right side - Filter icon -->
+
         <button
           aria-label="Hamburger Menu"
           class="flex items-center rounded"
@@ -13,12 +14,13 @@
             :name="'fluent-filter-add-20-filled'"
             class="w-8 h-8 text-gray-500"
           />
-          <span
+          <span class="text-[25px] px-4">Filter by</span>
+
+          <!-- <span
             v-else
             class="text-[25px]"
             @click="showMobileMenu = !showMobileMenu"
-            >Filter by</span
-          >
+            >Filter by</span -->
         </button>
         <!-- Left side - Cross icon -->
         <button

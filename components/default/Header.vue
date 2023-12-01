@@ -16,9 +16,10 @@
           class="block max-[768px]:hidden relative bg-white w-2/5 md:flex"
         >
           <button
+            @click="toggleDropdown"
+            id="clickbox"
             class="absolute whitespace-nowrap overflow-hidden w-[120px] inset-0 left-0 my-3 ml-4 pr-3 w-fit border-r-2 text-sm text-gray-600 flex items-center flex-shrink-0"
             type="button"
-            @click="dropdown = !dropdown"
           >
             {{
               selectedCategory?.name ? selectedCategory?.name : 'All categories'
@@ -43,7 +44,8 @@
           </button>
           <div
             v-if="dropdown"
-            class="absolute overflow-hidden max-w-[300px] w-full bg-white shadow-lg rounded-lg top-[100%] z-[99999]"
+            ref="dropdownMenu"
+            class="absolute dropdown-menu overflow-hidden max-w-[300px] w-full bg-white shadow-lg rounded-lg top-[100%] z-[99999]"
           >
             <div
               @click="
@@ -141,7 +143,7 @@
               v-if="showAccountDropdown && item?.url === '/account'"
               class="relative"
             > -->
-            <span
+            <!-- <span
               v-if="item?.url === '/account' && shop?.user?.email"
               class="absolute transition-all group-hover/menu:opacity-100 opacity-0 top-full left-0 mt-2 p-2 bg-white border border-gray-300 shadow-md rounded"
             >
@@ -156,7 +158,44 @@
               >
                 Logout
               </span>
-            </span>
+            </span> -->
+            <div class="relative">
+              <!-- Your existing code -->
+              <span
+                v-if="item?.url === '/account' && shop?.user?.email"
+                style="width: max-content"
+                class="absolute transition-all group-hover/menu:opacity-100 opacity-0 top-full left-0 mt-2 p-2 bg-white border border-gray-300 shadow-md rounded"
+              >
+                <!-- My Account option -->
+                <span
+                  class="block relative p-2 hover:bg-primary hover:text-white hover:rounded-full text-gray-400 cursor-pointer mb-2"
+                  aria-label="My Account"
+                >
+                  <router-link to="/user">My Account</router-link>
+                </span>
+
+                <!-- Logout option -->
+                <span
+                  class="block relative p-2 hover:bg-primary hover:text-white hover:rounded-full text-gray-400 cursor-pointer"
+                  aria-label="Logout"
+                  @click="
+                    (e) => {
+                      useAuthStore().logout()
+                    }
+                  "
+                >
+                  Logout
+                </span>
+              </span>
+              <!-- <span v-else>
+                <span
+                  class="block relative p-2 hover:bg-primary hover:text-white hover:rounded-full text-gray-400 cursor-pointer mb-2"
+                  aria-label="My Account"
+                >
+                  Login
+                </span>
+              </span> -->
+            </div>
             <!-- </div> -->
           </NuxtLink>
         </div>
@@ -175,19 +214,21 @@
         </div>
       </div>
       <form
-        method="post"
+        v-if="!isCheckoutRoute"
         :class="[
           {
             hidden: showMobileMenu
           }
         ]"
+        method="post"
         @submit="(e) => submitSearch(e)"
-        class="block mt-5 md:hidden relative bg-white md:flex"
+        class="block check mt-5 md:hidden relative bg-white md:flex"
       >
         <button
+          @click="toggleDropdown"
+          id="clickboxmob"
           class="absolute whitespace-nowrap overflow-hidden w-[120px] inset-0 left-0 my-3 ml-4 pr-3 w-fit border-r-2 text-sm text-gray-600 flex items-center flex-shrink-0"
           type="button"
-          @click="dropdown = !dropdown"
         >
           {{
             selectedCategory?.name ? selectedCategory?.name : 'All categories'
@@ -299,9 +340,8 @@
             @click="
               () => {
                 showMobileMenu = !showMobileMenu
-                 if(item?.name === 'Shop'){
-
-                   resetSearch(item)
+                if (item?.name === 'Shop') {
+                  resetSearch(item)
                 }
               }
             "
@@ -315,7 +355,7 @@
 </template>
 
 <script setup>
-// import { ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 // import { Scrollama } from 'vue-scrollama'
 import { check } from 'prettier'
 import logo from '/images/header_logo.png'
@@ -334,11 +374,60 @@ const selectedCategory = ref({})
 const keyword = ref('')
 const filters = computed(() => useShopPageStore().filtersList)
 const route = useRoute()
+// const dropdownMenu = ref(null)
 
 const resetSearch = (item) => {
-    selectedCategory.value = {}
-    useShopPageStore().getProducts({}, 1, false, true)
+  selectedCategory.value = {}
+  useShopPageStore().getProducts({}, 1, false, true)
 }
+const isCheckoutRoute = ref(false)
+
+watchEffect(() => {
+  isCheckoutRoute.value = route.path === '/checkout'
+})
+const toggleDropdown = () => {
+  console.log('click')
+  dropdown.value = !dropdown.value
+}
+
+// const handleClickOutside = (e) => {
+//   const clickBoxElement = document.getElementById('clickbox')
+//   console.log('clickhandle')
+//   if (clickBoxElement) {
+//     if (clickBoxElement.contains(e.target)) {
+//     } else {
+//       dropdown.value = false
+//     }
+//   }
+// }
+const handleClickOutside = (e) => {
+  const clickBoxElement = document.getElementById('clickbox')
+  const clickBoxMob = document.getElementById('clickboxmob')
+
+  if (
+    clickBoxElement &&
+    !clickBoxElement.contains(e.target) &&
+    window.innerWidth > 768
+  ) {
+    dropdown.value = false
+  }
+
+  if (
+    clickBoxMob &&
+    !clickBoxMob.contains(e.target) &&
+    window.innerWidth <= 768
+  ) {
+    dropdown.value = false
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('click', handleClickOutside)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('click', handleClickOutside)
+})
 const submitSearch = (e) => {
   e.preventDefault()
 

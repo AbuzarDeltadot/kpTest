@@ -6,6 +6,8 @@ export const useShopStore = defineStore({
       cartLength: 0,
       cartSummary: {
         products: 0,
+        actualPriceTotal: 0,
+        vatvalue: 0,
         totalQty: 0,
         subTotalPrice: 0,
         shippingFee: 0,
@@ -93,14 +95,38 @@ export const useShopStore = defineStore({
 
       let qty = 0
       let subTotal = 0
+      let vatTotal = 0
+      let actualPriceTotal = 0
       cartItems.map((item) => {
         qty = qty + item.cartData.qty
         subTotal = subTotal + (item.cartData.price * item.cartData.qty)
+        const attributes = item.attributes;
+        if (attributes) {
+          // Loop through the dynamic keys in attributes
+          Object.keys(attributes).forEach((attributeKey) => {
+            const attributeValue = attributes[attributeKey];
+            if (Array.isArray(attributeValue) && attributeValue.length > 0) {
+              const dynamicAttribute = attributeValue[0]; // Assuming it's an array
+              // Check if the dynamic attribute has actual_price and vat keys
+              if (
+                dynamicAttribute.hasOwnProperty('actual_price') &&
+                dynamicAttribute.hasOwnProperty('vat')
+              ) {
+                const actualPrice = parseFloat(dynamicAttribute.actual_price)
+                const vat = parseFloat(dynamicAttribute.vat)
+
+                actualPriceTotal += actualPrice * item.cartData.qty
+                vatTotal += vat * item.cartData.qty
+              }
+            }
+          });
+        }
       })
 
       this.shop.cartLength = cartItems?.length
-
+      this.shop.cartSummary.vatvalue = vatTotal
       this.shop.cartSummary.subTotalPrice = subTotal
+      this.shop.cartSummary.actualPriceTotal = actualPriceTotal
 
       const coupon = this.shop?.cartSummary?.coupon
 

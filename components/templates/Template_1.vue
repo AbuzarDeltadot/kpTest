@@ -1,9 +1,9 @@
 <template>
   <BasePageLoader :loader="data.loading" v-if="!homeData?.error">
     <NotificationBar
-      v-if="notificationContent"
-      :loading="false"
       :content="notificationContent"
+      v-if="notificationContent && products && products.length > 0"
+      :loading="false"
       class-name="bg-azure"
     />
 
@@ -59,8 +59,8 @@
           No Product found!
         </div> -->
         <button
+          v-show="products?.length > 0"
           ref="loadMoreButton"
-          v-if="products?.length > 0"
           :disabled="!loadMore"
           class="w-fit demo mx-auto block mt-5 text-white hover:bg-secondary transition px-6 py-3 rounded-full bg-primary"
           :class="{ 'pointer-events-none opacity-40 bg-gray-300': !loadMore }"
@@ -84,7 +84,7 @@
       Feedback
     </button>
   </BasePageLoader>
-  <div v-else></div>
+  <!-- <div v-else></div> -->
 </template>
 
 <script setup>
@@ -133,6 +133,7 @@ const handleLoadMore = () => {
   }
 }
 
+
 const loadMoreButtonWrapper = ref(null)
 
 onMounted(() => {
@@ -154,11 +155,9 @@ onMounted(() => {
     }
   )
   if (loadMoreButton.value) {
-    observer.observe(loadMoreButton.value);
+    observer.observe(loadMoreButton.value)
   }
 })
-
-
 </script>
 <style scoped>
 </style>

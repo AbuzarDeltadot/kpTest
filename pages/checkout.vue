@@ -5,7 +5,8 @@
         v-if="shop.cartItems.length > 0"
         class="md:flex items-stretch lg:flex-row flex-col mx-auto lg:max-w-full max-w-[600px] gap-16 relative"
       >
-        <div class="relative overflow-x-auto w-full lg:w-3/5 checkout-form">
+      <!-- overflow-x-auto -->
+        <div class="relative  w-full lg:w-3/5 checkout-form">
           <FormKit
             v-slot="{ value, state: { valid } }"
             type="form"
@@ -19,7 +20,7 @@
             "
             @keydown.enter.prevent
           >
-            <ul class="steps flex justify-between gap-5">
+            <ul class="steps flex justify-between gap-7 md:gap-5 ">
               <li
                 v-for="(step, stepName) in steps"
                 :key="stepName"
@@ -34,9 +35,10 @@
                 <!-- @click="activeStep = stepName" -->
 
                 {{ camel2title(stepName) }}
+
                 <span class="tabTitleCheck"
-                  ><Icon name="charm:tick" class="text-sm"
-                /></span>
+                  ><Icon name="charm:tick" class="text-sm" />
+                </span>
               </li>
             </ul>
 
@@ -436,7 +438,7 @@
                   <span v-else
                     >Make Payment of
                     {{
-                      $config.public.CURRENCY +
+                      $config.CURRENCY +
                       parseFloat(shop.cartSummary.totalPrice).toFixed(2)
                     }}</span
                   >
@@ -470,7 +472,7 @@
             >
               <span class="font-semibold text-sm">SubTotal</span>
               <span class="font-semibold text-sm">{{
-                $config.public.CURRENCY +
+                $config.CURRENCY +
                 parseFloat(shop.cartSummary.subTotalPrice).toFixed(2)
               }}</span>
             </div>
@@ -480,7 +482,7 @@
             >
               <span class="font-semibold text-sm">Shipping</span>
               <span class="font-semibold text-sm">{{
-                $config.public.CURRENCY +
+                $config.CURRENCY +
                 parseFloat(shop.cartSummary.shippingFee).toFixed(2)
               }}</span>
             </div>
@@ -490,7 +492,7 @@
             >
               <span class="font-semibold text-sm">Delivery</span>
               <span class="font-semibold text-sm">{{
-                $config.public.CURRENCY +
+                $config.CURRENCY +
                 parseFloat(shop.cartSummary.deliveryFee).toFixed(2)
               }}</span>
             </div>
@@ -501,11 +503,36 @@
               <span class="font-semibold text-sm">Discount</span>
               <span class="font-semibold text-sm"
                 >-{{
-                  $config.public.CURRENCY +
+                  $config.CURRENCY +
                   parseFloat(shop.cartSummary.discount).toFixed(2)
                 }}</span
               >
             </div>
+            <!-- v-if="shop.cartSummary.discount" -->
+            <div
+              class="flex justify-between mt-2 mb-2"
+            >
+              <span class="font-semibold text-sm">Actual price</span>
+              <span class="font-semibold text-sm"
+                >-{{
+                  $config.CURRENCY +
+                  parseFloat(shop.cartSummary.actualPriceTotal).toFixed(2)
+                }}</span
+              >
+            </div>
+            <!-- v-if="shop.cartSummary.discount" -->
+            <div
+              class="flex justify-between mt-2 mb-2"
+            >
+              <span class="font-semibold text-sm">Vat price</span>
+              <span class="font-semibold text-sm"
+                >-{{
+                  $config.CURRENCY +
+                  parseFloat(shop.cartSummary.vatvalue).toFixed(2)
+                }}</span
+              >
+            </div>
+
             <BaseCouponField />
             <div class="border-t mt-8">
               <div
@@ -513,7 +540,7 @@
               >
                 <span>Payable</span>
                 <span class="text-lg text-primary">{{
-                  $config.public.CURRENCY +
+                  $config.CURRENCY +
                   parseFloat(shop.cartSummary.totalPrice).toFixed(2)
                 }}</span>
               </div>
@@ -566,12 +593,11 @@ const payment = createInput(PaymentField)
 const shop = useShopStore().data
 // trackPurchaseEvent(shop)
 
-
 function handleButtonClick(event) {
-    event.preventDefault();
-    setStep(1); 
-    trackPurchaseEvent(); 
-  }
+  event.preventDefault()
+  setStep(1)
+  trackPurchaseEvent()
+}
 
 const trackPurchaseEvent = () => {
   const items = productSschema()
@@ -610,9 +636,8 @@ const productSschema = () => {
       price: item?.cartData.price,
       item_name: item?.name,
       item_brand: item?.brand.name,
-      coupon: "SUMMER_FUN",
-      item_variant: attribute_id.value,
-
+      coupon: 'SUMMER_FUN',
+      item_variant: attribute_id.value
     }
     array.push(obj)
   })
