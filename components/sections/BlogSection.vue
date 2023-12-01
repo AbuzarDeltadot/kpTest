@@ -41,7 +41,7 @@
                 <!-- <NuxtLink :to="`/blog/${blog.slug}`"> -->
                 <img
                   class="md:h-[300px] w-full object-cover object-center"
-                  :src="$config.public.IMAGE_URL + blog.featured_image"
+                  :src="$config.IMAGE_URL + blog.featured_image"
                   alt="blog"
                 />
                 <!-- </NuxtLink> -->

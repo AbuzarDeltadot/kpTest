@@ -229,7 +229,7 @@
                   </span>
                 </div>
                 <div
-                  class="lg:w-64 md:w-64 sm:w-64 w-full"
+                  class="lg:w-64 md:w-64 sm:w-64 "
                   v-for="(info, index) in detail?.product_information"
                   :key="index"
                 >
@@ -268,6 +268,7 @@
             <!-- @closing="onModalClose" -->
             <!-- placement="center" -->
             <BaseModal
+              placement="center"
               size="5xl"
               @close-modal="onHide"
               :show="showModal"

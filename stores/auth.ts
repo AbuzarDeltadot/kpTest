@@ -3,6 +3,7 @@ export const useAuthStore = defineStore({
   state: () => ({
     diagnosticUser: null,
     user: {},
+    token:'',
   }),
   getters: {
     authenticated(state) {
@@ -11,9 +12,13 @@ export const useAuthStore = defineStore({
     getDiagnosticUser(state) {
       return state.diagnosticUser
     },
-    getUser(state) {
+     getUser(state) {
       return state.user
     },
+    getToken(state){
+      return state.token
+    }
+    
   },
   actions: {
     async getMe() {
@@ -28,6 +33,7 @@ export const useAuthStore = defineStore({
     },
     async setUser(user: any) {
       this.user = user
+    
       this.setUserGlobally(user)
     },
     async login(loginForm: any, navigate = '/account') {
@@ -51,6 +57,7 @@ export const useAuthStore = defineStore({
 
     async setUserGlobally(user) {
       if (user) {
+        this.token = user.token;
         localStorage.setItem('customer', JSON.stringify(user))
         this.user = user
         useShopStore().setLoggedinUser(user)

@@ -3,10 +3,12 @@ export const useBrandStore = defineStore({
   state: () => ({
     brand: {
       // loading: true,
+      // loading: true,
       data: {},
       products: {},
       loadMore: ref(false),
       loading: ref(false),
+
     },
     page: {
       loading: true,
@@ -30,6 +32,7 @@ export const useBrandStore = defineStore({
     productBrand(state) {
       return state.brand.products
     },
+
     pageData(state) {
       return state.page
     },
@@ -50,12 +53,13 @@ export const useBrandStore = defineStore({
       catch (error) {
       }
     },
-    async getBrandProduct(brandSlug,pageNo) {
+
+    async getBrandProduct(brandSlug, pageNo) {
       // console.log(pageNo,brandSlug,'pageno')
       this.page.loading = true
       // console.log(this.brand.loading,'1')
       try {
-        const product = await useGet(`/brand/${brandSlug}/products?page=${pageNo ||1}`)
+        const product = await useGet(`/brand/${brandSlug}/products?page=${pageNo || 1}`)
         if (pageNo > 1)
           this.brand.products.push(...product.data)
         else
@@ -63,7 +67,7 @@ export const useBrandStore = defineStore({
 
         if (product?.next_page_url)
           this.brand.loadMore = true
-        
+
         else
           this.brand.loadMore = false
         this.page.loading = false
@@ -97,6 +101,8 @@ export const useBrandStore = defineStore({
       }
       catch (error) {
         this.collections.loading = false
+
+
       }
     },
   },

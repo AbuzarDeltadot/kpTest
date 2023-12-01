@@ -62,7 +62,7 @@ useHead(() => ({
         "@type": "Product",
         "name": "${data?.product?.name}",
         "description": "${data?.product?.plan_description}",
-        "sku": "${data?.product?.attributes[Object.keys(data?.product?.attributes)[0]][0].sku}",
+         "sku": "${data?.product?.attributes[Object.keys(data?.product?.attributes)[0]][0].sku}",
         "mpn": "${data?.product?.attributes[Object.keys(data?.product?.attributes)[0]][0].sku}",
         "image": [
           ${data?.product?.attributes[Object.keys(data?.product?.attributes)[0]][0].imageUrls
