@@ -514,7 +514,7 @@
             >
               <span class="font-semibold text-sm">Actual price</span>
               <span class="font-semibold text-sm"
-                >-{{
+                >{{
                   $config.CURRENCY +
                   parseFloat(shop.cartSummary.actualPriceTotal).toFixed(2)
                 }}</span
@@ -526,7 +526,7 @@
             >
               <span class="font-semibold text-sm">Vat price</span>
               <span class="font-semibold text-sm"
-                >-{{
+                >{{
                   $config.CURRENCY +
                   parseFloat(shop.cartSummary.vatvalue).toFixed(2)
                 }}</span

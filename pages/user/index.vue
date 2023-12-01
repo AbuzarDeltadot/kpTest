@@ -289,7 +289,7 @@
                         :disabled="true"
                         value-format="MMM DD YYYY"
                         value-locale="en"
-                        :value="usershowdate"
+                        :value="user_dateOfBirth"
                         label="Dtae Of Birth"
                         help=""
                         :classes="{ outer: 'w-1/2' }"
